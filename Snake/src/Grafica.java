@@ -4,6 +4,7 @@ import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Button;
 
 public class Grafica {
 
@@ -67,8 +68,24 @@ public class Grafica {
 		lblSnake.setAlignment(SWT.CENTER);
 		lblSnake.setForeground(SWTResourceManager.getColor(SWT.COLOR_RED));
 		lblSnake.setFont(SWTResourceManager.getFont("Small Fonts", 20, SWT.BOLD));
-		lblSnake.setBounds(208, 10, 190, 34);
+		lblSnake.setBounds(208, 10, 190, 35);
 		lblSnake.setText("SNAKE");
+		
+		Button btnUp = new Button(shell, SWT.NONE);
+		btnUp.setBounds(475, 220, 50, 50);
+		btnUp.setText("Up");
+		
+		Button btnDw = new Button(shell, SWT.NONE);
+		btnDw.setBounds(475, 270, 50, 50);
+		btnDw.setText("Dw");
+		
+		Button btnDx = new Button(shell, SWT.NONE);
+		btnDx.setBounds(525, 270, 50, 50);
+		btnDx.setText("Dx");
+		
+		Button btnSx = new Button(shell, SWT.NONE);
+		btnSx.setBounds(425, 270, 50, 50);
+		btnSx.setText("Sx");
 
 	}
 }
