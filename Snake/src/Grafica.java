@@ -43,9 +43,6 @@ public class Grafica {
 		while (!shell.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
-				centro  = new Punto(x,y);
-				c=new Cerchio(centro,r);
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
 			}
 		}
 	}
@@ -111,18 +108,48 @@ public class Grafica {
 		btnUp.setText("Up");
 		
 		Button btnDw = new Button(shell, SWT.NONE);
+		btnDw.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				c.sposta(0, -10);
+				centro=new Punto(c.getCentro());
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+			}
+		});
 		btnDw.setBounds(475, 270, 50, 50);
 		btnDw.setText("Dw");
 		
 		Button btnDx = new Button(shell, SWT.NONE);
+		btnDx.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				c.sposta(10, 0);
+				centro=new Punto(c.getCentro());
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+			}
+		});
 		btnDx.setBounds(525, 270, 50, 50);
 		btnDx.setText("Dx");
 		
 		Button btnSx = new Button(shell, SWT.NONE);
+		btnSx.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				c.sposta(-10, 0);
+				centro=new Punto(c.getCentro());
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+			}
+		});
 		btnSx.setBounds(425, 270, 50, 50);
 		btnSx.setText("Sx");
-		
-		
-
 	}
 }

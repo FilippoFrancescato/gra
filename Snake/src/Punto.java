@@ -6,7 +6,7 @@ public class Punto {
 	public static int xmin = 1;
 	public static int xmax = 400;
 	public static int ymin = 1;
-	public static int ymax = 200;
+	public static int ymax = 400;
 
 	// costruttori
 
