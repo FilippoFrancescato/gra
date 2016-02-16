@@ -18,6 +18,7 @@ public class Grafica {
 	public int x=200,y=200,r=10;
 	public Cerchio c;
 	public Punto centro;
+	public Mela m=new Mela();
 
 	/**
 	 * Launch the application.
@@ -87,6 +88,7 @@ public class Grafica {
 				centro=new Punto(x,y);
 				c=new Cerchio(centro,r);
 				gc.drawArc(x-r, y-r, r*2, r*2, 0, 360);
+				gc.drawArc(m.getCentro().getX(), m.getCentro().getY(), r, r, 0, 360);
 			}
 		});
 		btnAvvia.setBounds(425, 71, 150, 50);
