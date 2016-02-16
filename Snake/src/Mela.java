@@ -1,13 +1,11 @@
 import java.io.*;
 import java.util.Random;
 
-public class Mela {
+public class Mela extends Cerchio{
 	private Cerchio m;
 	
 	public Mela(){
-		int x = random.nextInt(400);
-		Punto c = new Punto();
-		m.setCentro(c);
+		
 	}
 	
 }

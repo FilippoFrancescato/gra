@@ -17,9 +17,13 @@ public class Grafica {
 	public GC gc;
 	public int x=200,y=200,r=10;
 	public Cerchio c;
-	public Punto centro;
-	public Mela m=new Mela();
+	public Punto centro=null;
+	public Cerchio mela=null;
 
+	public void creaMela(){
+		mela=new Cerchio(new Punto((int)(Math.random()*40)*10,(int)(Math.random()*40)*10), r);
+		gc.drawArc(mela.getCentro().getX()-r/2, mela.getCentro().getY()-r/2, r, r, 0, 360);
+	}
 	/**
 	 * Launch the application.
 	 * @param args
@@ -81,14 +85,19 @@ public class Grafica {
 		lblSnake.setFont(SWTResourceManager.getFont("Small Fonts", 20, SWT.BOLD));
 		lblSnake.setBounds(208, 10, 190, 35);
 		lblSnake.setText("SNAKE");
+		
 		Button btnAvvia = new Button(shell, SWT.NONE);
 		btnAvvia.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				centro=new Punto(x,y);
-				c=new Cerchio(centro,r);
-				gc.drawArc(x-r, y-r, r*2, r*2, 0, 360);
-				gc.drawArc(m.getCentro().getX(), m.getCentro().getY(), r, r, 0, 360);
+				if(centro==null){
+					centro=new Punto(x,y);
+					c=new Cerchio(centro,r);
+					gc.drawArc(x-r, y-r, r*2, r*2, 0, 360);
+				}
+				if(mela==null){
+					creaMela();
+				}
 			}
 		});
 		btnAvvia.setBounds(425, 71, 150, 50);
@@ -104,6 +113,7 @@ public class Grafica {
 				c.sposta(0, 10);
 				centro=new Punto(c.getCentro());
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				//if(centro.g)
 			}
 		});
 		btnUp.setBounds(475, 220, 50, 50);

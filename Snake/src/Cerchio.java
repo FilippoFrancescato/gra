@@ -1,5 +1,5 @@
 
-public class Cerchio {
+public class Cerchio{
 	private Punto centro;
 	private int raggio;
 	
