@@ -43,7 +43,7 @@ public class Grafica {
 					creaMela();
 				}
 				try {
-				    Thread.sleep(200);                 //1000 milliseconds is one second.
+				    Thread.sleep(50);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
@@ -52,14 +52,14 @@ public class Grafica {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, -10);
+				c.sposta(0, -5);
 				centro=new Punto(c.getCentro());
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
 				if(mela.getCentro().getY()-5 == c.getCentro().getY()+10 && mela.getCentro().getX() == c.getCentro().getX()){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(200);                 //1000 milliseconds is one second.
+				    Thread.sleep(50);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
@@ -68,14 +68,14 @@ public class Grafica {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(-10, 0);
+				c.sposta(-5, 0);
 				centro=new Punto(c.getCentro());
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()+5 == c.getCentro().getX()-10){
+				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()-5 == c.getCentro().getX()+10){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(200);                 //1000 milliseconds is one second.
+				    Thread.sleep(50);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
@@ -84,14 +84,14 @@ public class Grafica {
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(10, 0);
+				c.sposta(5, 0);
 				centro=new Punto(c.getCentro());
 				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()-5 == c.getCentro().getX()+10){
+				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()+5 == c.getCentro().getX()-10){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(200);                 //1000 milliseconds is one second.
+				    Thread.sleep(50);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
