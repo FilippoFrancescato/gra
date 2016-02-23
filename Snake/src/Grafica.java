@@ -25,73 +25,81 @@ public class Grafica {
 
 	public void creaMela(){
 		mela=new Cerchio(new Punto((int)(Math.random()*40)*10,(int)(Math.random()*40)*10), r);
-		gc.drawArc(mela.getCentro().getX()-r/2, mela.getCentro().getY()-r/2, r, r, 0, 360);
+		gc.drawArc(mela.getCentro().getX()-r, mela.getCentro().getY()-r, r, r, 0, 360);
 	}
 	
 	public void movimento(){
 		switch(verso){
 			case 'u':
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, 5);
+				c.sposta(0, 10);
 				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				//if(centro.g)
-				if(mela.getCentro().getY()+5 == c.getCentro().getY()-10 && mela.getCentro().getX() == c.getCentro().getX()){
+				if(mela.getCentro().getY()+5 == c.getCentro().getY()-5 && mela.getCentro().getX() == c.getCentro().getX()){
 					
 					creaMela();
 				}
 				try {
-				    Thread.sleep(50);                 //1000 milliseconds is one second.
+				    Thread.sleep(100);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
 				break;
 			case 'd':
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, -5);
+				c.sposta(0, -10);
 				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				if(mela.getCentro().getY()-5 == c.getCentro().getY()+10 && mela.getCentro().getX() == c.getCentro().getX()){
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				if(mela.getCentro().getY()-5 == c.getCentro().getY()+5 && mela.getCentro().getX() == c.getCentro().getX()){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(50);                 //1000 milliseconds is one second.
+				    Thread.sleep(100);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
 				break;
 			case 'l':
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(-5, 0);
+				c.sposta(-10, 0);
 				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()-5 == c.getCentro().getX()+10){
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()-5 == c.getCentro().getX()+5){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(50);                 //1000 milliseconds is one second.
+				    Thread.sleep(100);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
 				break;
 			case 'r':
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
 				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(5, 0);
+				c.sposta(10, 0);
 				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()+5 == c.getCentro().getX()-10){
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
+				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()+5 == c.getCentro().getX()-5){
 					creaMela();
 				}
 				try {
-				    Thread.sleep(50);                 //1000 milliseconds is one second.
+				    Thread.sleep(100);                 //1000 milliseconds is one second.
 				} catch(InterruptedException ex) {
 				    Thread.currentThread().interrupt();
 				}
@@ -189,7 +197,11 @@ public class Grafica {
 				if(centro==null){
 					centro=new Punto(x,y);
 					c=new Cerchio(centro,r);
-					gc.drawArc(x-r, y-r, r*2, r*2, 0, 360);
+					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+					gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+					gc.fillArc(x-r, y-r, r, r, 0, 360);
+					gc.drawArc(x-r, y-r, r, r, 0, 360);
+					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
 				}
 				if(mela==null){
 					creaMela();
@@ -199,69 +211,6 @@ public class Grafica {
 		btnAvvia.setBounds(425, 71, 150, 50);
 		btnAvvia.setText("Avvia");
 		
-		/*Button btnUp = new Button(shell, SWT.NONE);
-		btnUp.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, 5);
-				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				//if(centro.g)
-				if(mela.getCentro().getY()+5 == c.getCentro().getY()-10 && mela.getCentro().getX() == c.getCentro().getX()){
-					creaMela();
-				}
-			}
-		});
-		btnUp.setBounds(475, 220, 50, 50);
-		btnUp.setText("Up");
 		
-		Button btnDw = new Button(shell, SWT.NONE);
-		btnDw.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, -10);
-				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-			}
-		});
-		btnDw.setBounds(475, 270, 50, 50);
-		btnDw.setText("Dw");
-		
-		Button btnDx = new Button(shell, SWT.NONE);
-		btnDx.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(10, 0);
-				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-			}
-		});
-		btnDx.setBounds(525, 270, 50, 50);
-		btnDx.setText("Dx");
-		
-		Button btnSx = new Button(shell, SWT.NONE);
-		btnSx.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(-10, 0);
-				centro=new Punto(c.getCentro());
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r*2, r*2, 0, 360);
-			}
-		});
-		btnSx.setBounds(425, 270, 50, 50);
-		btnSx.setText("Sx");
-		*/
 	}
 }
