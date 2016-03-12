@@ -1,6 +1,9 @@
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Canvas;
+
+import java.util.ArrayList;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.wb.swt.SWTResourceManager;
 import org.eclipse.swt.widgets.Label;
@@ -22,27 +25,44 @@ public class Grafica {
 	private Punto centro=null;
 	private Cerchio mela=null;
 	private char verso;
+	private int punt = 0;
+	private ArrayList<Cerchio> v=new ArrayList<Cerchio>(1);
+	
 
 	public void creaMela(){
 		mela=new Cerchio(new Punto((int)(Math.random()*40)*10,(int)(Math.random()*40)*10), r);
 		gc.drawArc(mela.getCentro().getX()-r, mela.getCentro().getY()-r, r, r, 0, 360);
 	}
 	
+	public void spostatutto(int x,int y){
+		for(int i=0;i<v.size();i++){
+			gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+			gc.drawArc(v.get(v.size()-1).getCentro().getX()-r, v.get(v.size()-1).getCentro().getY()-r, r, r, 0, 360);
+			gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+			if(i==0){
+				v.get(i).sposta(x, y);
+			}else{
+				for(int j=1;j<v.size();j++){
+					v.set(j, new Cerchio(new Punto(v.get(j-1).getCentro().getX()-x,v.get(j-1).getCentro().getY()+y),5));
+				}
+			}
+			gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
+			gc.drawArc(v.get(i).getCentro().getX()-r, v.get(i).getCentro().getY()-r, r, r, 0, 360);
+			gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
+			gc.drawArc(mela.getCentro().getX()-r, mela.getCentro().getY()-r, r, r, 0, 360);
+			canvas.redraw();
+		}
+	}
+	
 	public void movimento(){
 		switch(verso){
 			case 'u':
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, 10);
-				centro=new Punto(c.getCentro());
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				//if(centro.g)
-				if(mela.getCentro().getY()+5 == c.getCentro().getY()-5 && mela.getCentro().getX() == c.getCentro().getX()){
-					
+				spostatutto(0,10);
+					//if(centro.g)
+				if(mela.getCentro().getY()+5 == v.get(0).getCentro().getY()-5 && mela.getCentro().getX() == v.get(0).getCentro().getX()){
+					punt+=10;
 					creaMela();
+					v.add(new Cerchio(new Punto(v.get(v.size()-1).getCentro().getX(),v.get(v.size()-1).getCentro().getY()-10),5));
 				}
 				try {
 				    Thread.sleep(100);                 //1000 milliseconds is one second.
@@ -51,16 +71,12 @@ public class Grafica {
 				}
 				break;
 			case 'd':
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(0, -10);
-				centro=new Punto(c.getCentro());
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				if(mela.getCentro().getY()-5 == c.getCentro().getY()+5 && mela.getCentro().getX() == c.getCentro().getX()){
+				spostatutto(0,-10);
+				if(mela.getCentro().getY()-5 == v.get(0).getCentro().getY()+5 && mela.getCentro().getX() ==v.get(0).getCentro().getX()){
+					punt+=10;
 					creaMela();
+					v.add(new Cerchio(new Punto(v.get(v.size()-1).getCentro().getX(),v.get(v.size()-1).getCentro().getY()+10),5));
+					
 				}
 				try {
 				    Thread.sleep(100);                 //1000 milliseconds is one second.
@@ -69,16 +85,13 @@ public class Grafica {
 				}
 				break;
 			case 'l':
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(-10, 0);
-				centro=new Punto(c.getCentro());
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()-5 == c.getCentro().getX()+5){
+				
+				spostatutto(-10, 0);
+				
+				if(mela.getCentro().getY() == v.get(0).getCentro().getY() && mela.getCentro().getX()+5 == v.get(0).getCentro().getX()-5){
+					punt+=10;
 					creaMela();
+					v.add(new Cerchio(new Punto(v.get(v.size()-1).getCentro().getX()-10,v.get(v.size()-1).getCentro().getY()),5));
 				}
 				try {
 				    Thread.sleep(100);                 //1000 milliseconds is one second.
@@ -87,16 +100,11 @@ public class Grafica {
 				}
 				break;
 			case 'r':
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				c.sposta(10, 0);
-				centro=new Punto(c.getCentro());
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
-				gc.drawArc(centro.getX()-r, centro.getY()-r, r, r, 0, 360);
-				gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_BLACK));
-				if(mela.getCentro().getY() == c.getCentro().getY() && mela.getCentro().getX()+5 == c.getCentro().getX()-5){
+				spostatutto(10, 0);
+				if(mela.getCentro().getY() == v.get(0).getCentro().getY() && mela.getCentro().getX()-5 == v.get(0).getCentro().getX()+5){
+					punt+=10;
 					creaMela();
+					v.add(new Cerchio(new Punto(v.get(v.size()-1).getCentro().getX()+10,v.get(v.size()-1).getCentro().getY()),5));
 				}
 				try {
 				    Thread.sleep(100);                 //1000 milliseconds is one second.
@@ -127,10 +135,12 @@ public class Grafica {
 		createContents();
 		shell.open();
 		shell.layout();
+		
 		while (!shell.isDisposed()) {
 			/*if (!display.readAndDispatch()) {
 				display.sleep();
 			}*/
+			
 			while(!display.readAndDispatch()){
 				movimento();
 			}
@@ -194,9 +204,11 @@ public class Grafica {
 		btnAvvia.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
 				if(centro==null){
 					centro=new Punto(x,y);
 					c=new Cerchio(centro,r);
+					v.add(c);
 					gc.setForeground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					gc.setBackground(SWTResourceManager.getColor(SWT.COLOR_GREEN));
 					gc.fillArc(x-r, y-r, r, r, 0, 360);
